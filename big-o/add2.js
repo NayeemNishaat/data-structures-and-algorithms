@@ -1,7 +1,5 @@
 function addUpTo(n) {
-  let total = 0;
-  for (i = 1; i <= n; i++) total += i;
-  return total;
+  return (n * (n + 1)) / 2;
 }
 console.time("addUpTo");
 console.log(addUpTo(1000000));
