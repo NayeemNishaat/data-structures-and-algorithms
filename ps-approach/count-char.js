@@ -8,9 +8,8 @@ function countChar(str) {
   //   else count[char] = 1;
   // });
 
-  for (i = 0; i < lowerCasedStr.length; i++) {
-    const char = lowerCasedStr[i];
-
+  // for (i = 0; i < lowerCasedStr.length; i++) {
+  for (const char of lowerCasedStr) {
     if (/[^a-zA-Z0-9]/g.test(char)) continue; // Note: Continue because it's inside a loop!
     if (count[char]) count[char]++;
     else count[char] = 1;
