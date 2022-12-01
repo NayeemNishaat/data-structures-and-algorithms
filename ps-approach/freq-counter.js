@@ -31,3 +31,5 @@ console.log(freqSame([1, 2, 3, 2, 5], [4, 4, 1, 9, 25])); // false
 // console.log(2 in { 2: 3, 6: 4 });
 
 // Remark: In frequency counter algorithm, we can use objects to store the frequency of the arrays. And then we can compare the objects to get the expected result.
+
+// Challenge: Anagram
