@@ -47,3 +47,8 @@ function validAnagram(str1, str2) {
   return true;
 }
 console.log(validAnagram("anagram", "nagaram"));
+
+// Note: This Frequency Counter Algorithm is best suited for:
+// Point: Anagram
+// Point: Comparing if arrays are same or squared etc.
+// Point: If numbers consist of the same digits but in different order etc.
