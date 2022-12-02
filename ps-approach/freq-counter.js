@@ -36,12 +36,12 @@ function freqSame(arr1, arr2) {
 function validAnagram(str1, str2) {
   if (str1.length !== str2.length) return false;
 
-  const count = {};
-  for (const char of str1) count[char] = ++count[char] || 1;
+  const lookup = {};
+  for (const char of str1) lookup[char] = ++lookup[char] || 1;
 
   for (const char of str2) {
-    if (!count[char]) return false;
-    count[char] = --count[char];
+    if (!lookup[char]) return false;
+    lookup[char] = --lookup[char];
   }
 
   return true;
