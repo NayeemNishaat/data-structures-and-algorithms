@@ -27,9 +27,23 @@ function freqSame(arr1, arr2) {
   }
   return true;
 }
-console.log(freqSame([1, 2, 3, 2, 5], [4, 4, 1, 9, 25])); // false
+// console.log(freqSame([1, 2, 3, 2, 5], [4, 4, 1, 9, 25])); // false
 // console.log(2 in { 2: 3, 6: 4 });
 
 // Remark: In frequency counter algorithm, we can use objects to store the frequency of the arrays. And then we can compare the objects to get the expected result.
 
 // Challenge: Anagram
+function validAnagram(str1, str2) {
+  if (str1.length !== str2.length) return false;
+
+  const count = {};
+  for (const char of str1) count[char] = ++count[char] || 1;
+
+  for (const char of str2) {
+    if (!count[char]) return false;
+    count[char] = --count[char];
+  }
+
+  return true;
+}
+console.log(validAnagram("aaz", "zaa"));
