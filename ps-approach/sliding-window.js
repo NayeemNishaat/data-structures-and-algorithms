@@ -14,4 +14,21 @@ function maxSubarraySum(arr, num) {
 
   return max;
 }
-console.log(maxSubarraySum([1, 2, 5, 2, 8, 1, 5], 2));
+// console.log(maxSubarraySum([1, 2, 5, 2, 8, 1, 5], 2));
+
+// Chapter: Efficient O(n) approach
+function maxSubarraySumEff(arr, num) {
+  if (arr.length < num) return null;
+
+  let max = -Infinity;
+  let ini = 0;
+
+  for (let i = 0; i < num; i++) ini += arr[i];
+
+  for (let i = 1; i < arr.length - num + 1; i++) {
+    ini = ini - arr[i - 1] + arr[i + num - 1];
+    if (ini > max) max = ini;
+  }
+  return max;
+}
+console.log(maxSubarraySumEff([1, 2, 5, 2, 8, 7, 1, 5], 2));

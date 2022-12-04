@@ -12,7 +12,7 @@ function sumZero(arr) {
 // console.log(sumZero([-3, -2, -1, 0, 1, 2, 3])); // [-3, 3]
 
 // Chapter: Efficient O(n) solution
-function sumZero(arr) {
+function sumZeroEff(arr) {
   let left = 0;
   let right = arr.length - 1;
 
@@ -25,7 +25,7 @@ function sumZero(arr) {
     else left++;
   }
 }
-// console.log(sumZero([-3, -2, -1, 0, 1, 2, 3]));
+console.log(sumZeroEff([-3, -2, -1, 0, 1, 2, 3]));
 
 // Chapter: Count Unique Values
 function countUnique(arr) {
