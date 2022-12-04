@@ -1,3 +1,4 @@
+// Important: Input must be sorted
 // Chapter: Inefficient O(n^2) solution
 function sumZero(arr) {
   for (const val of arr) {
@@ -24,4 +25,17 @@ function sumZero(arr) {
     else left++;
   }
 }
-console.log(sumZero([-3, -2, -1, 0, 1, 2, 3]));
+// console.log(sumZero([-3, -2, -1, 0, 1, 2, 3]));
+
+// Chapter: Count Unique Values
+function countUnique(arr) {
+  if (arr.length === 0) return 0;
+
+  let j = 1;
+
+  for (let i = 0; i < arr.length - 1; i++) {
+    if (arr[i] !== arr[i + 1]) ++j;
+  }
+  return j;
+}
+console.log(countUnique([-2, -1, -1, 0, 1]));
