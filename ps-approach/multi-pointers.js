@@ -34,8 +34,8 @@ function countUnique(arr) {
   let j = 1;
 
   for (let i = 0; i < arr.length - 1; i++) {
-    if (arr[i] !== arr[i + 1]) ++j;
+    if (arr[i] !== arr[i + 1]) ++j; // Note: Just find the difference because the array is sorted
   }
   return j;
 }
-console.log(countUnique([-2, -1, -1, 0, 1]));
+console.log(countUnique([1, 1, 2, 3, 3, 4, 5, 6, 6, 7]));
