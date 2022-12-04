@@ -46,6 +46,19 @@ function areThereDuplicates() {
 }
 // console.log(areThereDuplicates(1, 2, 2));
 
+// Chapter: Loosely check if subsequence
+// function isSubsequence(str1, str2) {
+//   var i = 0;
+//   var j = 0;
+//   if (!str1) return true;
+//   while (j < str2.length) {
+//     if (str2[j] === str1[i]) i++;
+//     if (i === str1.length) return true;
+//     j++;
+//   }
+//   return false;
+// }
+
 // Chapter: Find if subsequence
 function isSubsequence(str1, str2) {
   if (str1.length > str2.length || !str1) return false;
@@ -66,4 +79,4 @@ function isSubsequence(str1, str2) {
   }
   return false;
 }
-console.log(isSubsequence("ccc", "abhbabcccccjcd"));
+console.log(isSubsequence("ccc", "abhbabccjcd"));
