@@ -44,4 +44,26 @@ function countUnique(arr) {
 function areThereDuplicates() {
   return new Set(arguments).size !== arguments.length;
 }
-console.log(areThereDuplicates(1, 2, 2));
+// console.log(areThereDuplicates(1, 2, 2));
+
+// Chapter: Find if subsequence
+function isSubsequence(str1, str2) {
+  if (str1.length > str2.length || !str1) return false;
+  let j = 0;
+  let k = 0;
+
+  for (let i = 0; i < str2.length; i++) {
+    if (str2[i] === str1[j]) {
+      ++j;
+      ++k;
+      continue;
+    }
+    if (j === str1.length) return true;
+    if (k && str2[i] !== str1[j - 1]) {
+      j = 0;
+      k = 0;
+    }
+  }
+  return false;
+}
+console.log(isSubsequence("abc", "abhbabcccjcd"));
