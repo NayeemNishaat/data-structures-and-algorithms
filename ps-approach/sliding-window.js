@@ -31,4 +31,22 @@ function maxSubarraySumEff(arr, num) {
   }
   return max;
 }
-console.log(maxSubarraySumEff([1, 2, 5, 2, 8, 7, 1, 5], 2));
+// console.log(maxSubarraySumEff([1, 2, 5, 2, 8, 7, 1, 5], 2));
+
+// Chapter: findLongestSubstring with unique chars
+function findLongestSubstring(str) {
+  let longest = 0;
+  let seen = {};
+  let start = 0;
+
+  for (let i = 0; i < str.length; i++) {
+    let char = str[i];
+    if (seen[char]) {
+      start = Math.max(start, seen[char]);
+    }
+    longest = Math.max(longest, i - start + 1);
+    seen[char] = i + 1;
+  }
+  return longest;
+}
+console.log(findLongestSubstring("hello"));
