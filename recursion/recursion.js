@@ -67,8 +67,18 @@ function collectOddValues(arr) {
 console.log(collectOddValues([1, 2, 3, 4, 5])); */
 
 // Chapter: Recursion challenge
-function reverse(str) {
+// Segment: Reverse str
+/* function reverse(str) {
   if (!str.length) return "";
   return str.slice(-1).concat(reverse(str.slice(0, -1)));
 }
-console.log(reverse("nayeem"));
+console.log(reverse("nayeem")); */
+
+// Segment: Is Palindrome
+function isPalindrome(str) {
+  if (str.slice(0, 1) === str.slice(-1)) {
+    if (str.length) return isPalindrome(str.slice(1, -1));
+    else return true;
+  } else return false;
+}
+console.log(isPalindrome("racecar"));
