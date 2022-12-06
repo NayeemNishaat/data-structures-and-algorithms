@@ -75,10 +75,19 @@ console.log(collectOddValues([1, 2, 3, 4, 5])); */
 console.log(reverse("nayeem")); */
 
 // Segment: Is Palindrome
-function isPalindrome(str) {
+/* function isPalindrome(str) {
   if (str.slice(0, 1) === str.slice(-1)) {
     if (str.length) return isPalindrome(str.slice(1, -1));
     else return true;
   } else return false;
 }
-console.log(isPalindrome("racecar"));
+console.log(isPalindrome("racecar")); */
+
+// Segment: Some recursive function implementation
+function someRecursive(array, callback) {
+  if (array.length === 0) return false;
+  if (callback(array[0])) return true;
+  return someRecursive(array.slice(1), callback);
+}
+someRecursive([1, 2, 3, 4], (val) => val % 2 !== 0);
+console.log(someRecursive([3, 5, 2, 7], (val) => val % 2 === 0)); // Check if any even exist
