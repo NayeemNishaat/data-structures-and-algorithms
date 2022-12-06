@@ -1,4 +1,4 @@
-// Chapter: Simple recursive problems
+/* // Chapter: Simple recursive problems
 // Segment: Factorial with recursion
 function factorial(n) {
   if (n === 0) return 1;
@@ -64,4 +64,11 @@ function collectOddValues(arr) {
   result = result.concat(collectOddValues(arr.slice(1)));
   return result;
 }
-console.log(collectOddValues([1, 2, 3, 4, 5]));
+console.log(collectOddValues([1, 2, 3, 4, 5])); */
+
+// Chapter: Recursion challenge
+function reverse(str) {
+  if (!str.length) return "";
+  return str.slice(-1).concat(reverse(str.slice(0, -1)));
+}
+console.log(reverse("nayeem"));
