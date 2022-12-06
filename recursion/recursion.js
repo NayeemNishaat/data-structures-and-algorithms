@@ -84,10 +84,24 @@ console.log(reverse("nayeem")); */
 console.log(isPalindrome("racecar")); */
 
 // Segment: Some recursive function implementation
-function someRecursive(array, callback) {
+/* function someRecursive(array, callback) {
   if (array.length === 0) return false;
   if (callback(array[0])) return true;
   return someRecursive(array.slice(1), callback);
 }
 someRecursive([1, 2, 3, 4], (val) => val % 2 !== 0);
-console.log(someRecursive([3, 5, 2, 7], (val) => val % 2 === 0)); // Check if any even exist
+console.log(someRecursive([3, 5, 2, 7], (val) => val % 2 === 0)); */ // Check if any even exist
+
+// Segment: Flatten array
+function flatten(oldArr) {
+  const newArr = [];
+
+  for (const val of oldArr) {
+    if (Array.isArray(val)) {
+      return newArr.concat(flatten(val));
+    } else newArr.push(val);
+  }
+
+  return newArr;
+}
+console.log(flatten([2, 4, [5, 4]]));
