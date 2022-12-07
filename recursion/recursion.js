@@ -145,8 +145,8 @@ console.log(
 }
  */
 
-// Segment: Collect String
-function collectString(ob) {
+// Segment: Collect String (helper)
+/* function collectString(ob) {
   const arr = [];
   function helper(ob) {
     for (const key in ob) {
@@ -158,4 +158,12 @@ function collectString(ob) {
   helper(ob);
   return arr;
 }
-console.log(collectString({ a: "This", b: "is", c: "apple", d: { e: "." } }));
+console.log(collectString({ a: "This", b: "is", c: "apple", d: { e: "." } })); */
+
+// Segment: Collect String (pure)
+function collectStringPure(ob) {
+  //
+}
+console.log(
+  collectStringPure({ a: "This", b: "is", c: "apple", d: { e: "." } })
+);
