@@ -121,7 +121,7 @@ console.log(flatten([2, 4, [5, 4, [1, 2, 3]]]));
 console.log(capitalize("")); */
 
 // Segment: Nested Even Sum
-function nestedEvenSum(ob, sum = 0) {
+/* function nestedEvenSum(ob, sum = 0) {
   for (const key in ob) {
     if (typeof ob[key] === "object") sum += nestedEvenSum(ob[key]);
     if (typeof ob[key] === "number") ob[key] % 2 === 0 ? (sum += ob[key]) : 0;
@@ -130,4 +130,16 @@ function nestedEvenSum(ob, sum = 0) {
 }
 console.log(
   nestedEvenSum({ sugar: 30, cookie: 60, fruits: { mango: 40, orange: 61 } })
-);
+); */
+
+// Segment: Stringify Number
+function stringifyNumbers(obj) {
+  const newObj = {};
+  for (const key in obj) {
+    if (typeof obj[key] === "number") newObj[key] = obj[key].toString();
+    else if (typeof obj[key] === "object" && !Array.isArray(obj[key]))
+      newObj[key] = stringifyNumbers(obj[key]);
+    else newObj[key] = obj[key];
+  }
+  return newObj;
+}
