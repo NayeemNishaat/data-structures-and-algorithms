@@ -133,7 +133,7 @@ console.log(
 ); */
 
 // Segment: Stringify Number
-function stringifyNumbers(obj) {
+/* function stringifyNumbers(obj) {
   const newObj = {};
   for (const key in obj) {
     if (typeof obj[key] === "number") newObj[key] = obj[key].toString();
@@ -143,3 +143,19 @@ function stringifyNumbers(obj) {
   }
   return newObj;
 }
+ */
+
+// Segment: Collect String
+function collectString(ob) {
+  const arr = [];
+  function helper(ob) {
+    for (const key in ob) {
+      if (typeof ob[key] === "object" && !Array.isArray(ob[key]))
+        helper(ob[key]);
+      if (typeof ob[key] === "string") arr.push(ob[key]);
+    }
+  }
+  helper(ob);
+  return arr;
+}
+console.log(collectString({ a: "This", b: "is", c: "apple", d: { e: "." } }));
