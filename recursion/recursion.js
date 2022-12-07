@@ -119,3 +119,15 @@ console.log(flatten([2, 4, [5, 4, [1, 2, 3]]]));
     .trim();
 }
 console.log(capitalize("")); */
+
+// Segment: Nested Even Sum
+function nestedEvenSum(ob, sum = 0) {
+  for (const key in ob) {
+    if (typeof ob[key] === "object") sum += nestedEvenSum(ob[key]);
+    if (typeof ob[key] === "number") ob[key] % 2 === 0 ? (sum += ob[key]) : 0;
+  }
+  return sum; // Note: Base case
+}
+console.log(
+  nestedEvenSum({ sugar: 30, cookie: 60, fruits: { mango: 40, orange: 61 } })
+);
