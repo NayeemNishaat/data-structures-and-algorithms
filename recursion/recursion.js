@@ -93,7 +93,7 @@ someRecursive([1, 2, 3, 4], (val) => val % 2 !== 0);
 console.log(someRecursive([3, 5, 2, 7], (val) => val % 2 === 0)); */ // Check if any even exist
 
 // Segment: Flatten array
-function flatten(oldArr) {
+/* function flatten(oldArr) {
   const newArr = [];
 
   for (const val of oldArr) {
@@ -105,3 +105,17 @@ function flatten(oldArr) {
   return newArr;
 }
 console.log(flatten([2, 4, [5, 4, [1, 2, 3]]]));
+ */
+
+// Segment: Capitalize
+/* function capitalize(str) {
+  const arr = str.split(" ");
+  if (arr[0] === "") return "";
+
+  return arr[0][0]
+    .toUpperCase()
+    .concat(arr[0].slice(1))
+    .concat(" " + capitalize(arr.slice(1).join(" ")))
+    .trim();
+}
+console.log(capitalize("")); */
