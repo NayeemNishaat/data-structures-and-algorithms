@@ -162,8 +162,16 @@ console.log(collectString({ a: "This", b: "is", c: "apple", d: { e: "." } })); *
 
 // Segment: Collect String (pure)
 function collectStringPure(ob) {
-  //
+  const arr = [];
+
+  for (const key in ob) {
+    if (typeof ob[key] === "object" && !Array.isArray(ob[key]))
+      return arr.concat(collectStringPure(ob[key]));
+    if (typeof ob[key] === "string") arr.push(ob[key]);
+  }
+
+  return arr;
 }
 console.log(
-  collectStringPure({ a: "This", b: "is", c: "apple", d: { e: "." } })
+  collectStringPure({ a: "This", b: "is", c: "apple", d: { e: ".", f: "!" } })
 );
