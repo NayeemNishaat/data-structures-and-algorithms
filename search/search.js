@@ -20,4 +20,4 @@ function binarySearch(arr, num) {
   }
   return -1;
 }
-console.log(binarySearch([1, 3, 5, 8, 23, 32, 35, 78], 320));
+console.log(binarySearch([1, 3, 5, 8, 23, 32, 35, 78], 1));
