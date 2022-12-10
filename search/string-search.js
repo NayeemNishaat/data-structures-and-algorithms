@@ -24,18 +24,19 @@ function KMPSearch(str, pattern) {
     else lps.push(j), i++;
   }
 
-  for (i = 0; i < str.length; i++) {
+  for (i = 0; i < str.length; ) {
+    // Important: Can't mix regular i++ with i++ in the body!
     for (j = 0; j < pattern.length; ) {
       if (str[i] === pattern[j]) i++, j++;
       else if (j !== 0) j = lps[j - 1];
       else {
-        j = 0;
+        i++;
         break;
       }
-      if (pattern.length - 1 === j) ++count;
+      if (pattern.length === j) ++count;
     }
   }
 
   return count;
 }
-console.log(KMPSearch("awhaaabaabaaaababcabcabababdaabaabaaahjj", "aabaabaaa"));
+console.log(KMPSearch("This is nayeem! Isn't it?", "is"));
