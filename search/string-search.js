@@ -15,7 +15,8 @@ console.log(searchString("This is a string. Isn't it?".toLowerCase(), "is")); //
 // KMP String Search
 function KMPSearch(str, pattern) {
   const lps = [0];
-  let j = 0;
+  let j = 0,
+    count = 0;
 
   for (i = 1; i < pattern.length; ) {
     if (pattern[i] === pattern[j]) lps.push(j + 1), i++, j++;
@@ -24,6 +25,21 @@ function KMPSearch(str, pattern) {
       else lps.push(j), i++;
     }
   }
-  return lps;
+
+  for (i = 0; i < str.length; i++) {
+    for (j = 0; j < pattern.length; ) {
+      console.log(pattern[j], j);
+      if (str[i] === pattern[j]) i++, j++;
+      else {
+        if (j !== 0) j = lps[j - 1];
+        else {
+          j = 0;
+          break;
+        }
+      }
+      if (pattern.length - 1 === j) ++count;
+    }
+  }
+  return count;
 }
-console.log(KMPSearch("ababcabcabababd", "aabaabaaa"));
+console.log(KMPSearch("awhaaabaabaaaababcabcabababdaabaabaaahjj", "aabaabaaa"));
