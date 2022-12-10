@@ -20,26 +20,22 @@ function KMPSearch(str, pattern) {
 
   for (i = 1; i < pattern.length; ) {
     if (pattern[i] === pattern[j]) lps.push(j + 1), i++, j++;
-    else {
-      if (j !== 0) j = lps[j - 1];
-      else lps.push(j), i++;
-    }
+    else if (j !== 0) j = lps[j - 1];
+    else lps.push(j), i++;
   }
 
   for (i = 0; i < str.length; i++) {
     for (j = 0; j < pattern.length; ) {
-      console.log(pattern[j], j);
       if (str[i] === pattern[j]) i++, j++;
+      else if (j !== 0) j = lps[j - 1];
       else {
-        if (j !== 0) j = lps[j - 1];
-        else {
-          j = 0;
-          break;
-        }
+        j = 0;
+        break;
       }
       if (pattern.length - 1 === j) ++count;
     }
   }
+
   return count;
 }
 console.log(KMPSearch("awhaaabaabaaaababcabcabababdaabaabaaahjj", "aabaabaaa"));
