@@ -11,11 +11,13 @@ function mergeSortedArray(arr1, arr2) {
       if (arr1.length === i) {
         arr.push(...arr2.slice(j));
         break loop1;
+        // return arr;
       }
 
       if (arr2.length === j) {
         arr.push(...arr1.slice(i));
-        break loop1;
+        break loop1; // Note: Breaks out of loop2 and loop1 both.
+        // return arr; // Remark: Another way could be return from the function.
       }
     }
   }
