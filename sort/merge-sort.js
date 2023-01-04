@@ -8,6 +8,7 @@ function mergeSortedArray(arr1, arr2) {
       if (arr1[i] < arr2[j]) arr.push(arr1[i]), i++;
       else arr.push(arr2[j]), j++;
 
+      // Important: Breaking after incrementing otherwise we will always start with j = 0;
       if (arr1.length === i) {
         arr.push(...arr2.slice(j));
         break loop1;
