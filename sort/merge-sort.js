@@ -1,4 +1,5 @@
-function mergeSortedArray(arr1, arr2) {
+// Part: Approach 1:
+/* function mergeSortedArray(arr1, arr2) {
   const arr = [];
   if (!arr1.length) return arr2;
   if (!arr2.length) return arr1;
@@ -26,3 +27,6 @@ function mergeSortedArray(arr1, arr2) {
   return arr;
 }
 console.log(mergeSortedArray([1, 3, 5], [0]));
+ */
+
+// Part: Approach 2:
