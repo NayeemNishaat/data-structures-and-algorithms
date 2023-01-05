@@ -45,4 +45,14 @@ function mergeSortedArray(arr1, arr2) {
 
   return arr;
 }
-console.log(mergeSortedArray([1, 3, 5], [0]));
+
+function mergeSort(arr) {
+  if (arr.length <= 1) return arr;
+
+  const mid = Math.floor(arr.length / 2);
+  return mergeSortedArray(
+    mergeSort(arr.slice(0, mid)),
+    mergeSort(arr.slice(mid))
+  );
+}
+console.log(mergeSort([24, 1, 34, 5, 77, 5, 4, 67, 434, 0]));
