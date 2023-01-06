@@ -107,3 +107,7 @@ const availableSlots = getAvailableTimeSlots(slots, bookedSlots);
 // console.log(slots);
 // console.log(bookedSlots);
 console.log(availableSlots);
+
+// const date = new Date()
+// new Date(date.getFullYear(), date.getMonth(), 1); // Note: First day of the month
+// new Date(date.getFullYear(), date.getMonth() + 1, 0); // Note: Last day of the month
