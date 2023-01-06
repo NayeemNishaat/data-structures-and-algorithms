@@ -46,12 +46,12 @@ const bookedSlots = [
 ];
 const ranges = [
   {
-    start: "2001-01-01T08:00:00.000Z",
-    end: "2001-01-01T12:00:00.000Z"
+    start: "2023-01-05T08:00:00.000Z",
+    end: "2023-01-05T12:00:00.000Z"
   },
   {
-    start: "2001-01-01T14:00:00.000Z",
-    end: "2001-01-01T17:00:00.000Z"
+    start: "2023-01-05T14:00:00.000Z",
+    end: "2023-01-05T17:00:00.000Z"
   }
 ];
 
@@ -85,6 +85,18 @@ function getTimeSlots(ranges, interval) {
 const slots = getTimeSlots(ranges, 60);
 console.log(slots);
 
-function getAvailableTimeSlots(slots, bookedSlots) {}
+function getAvailableTimeSlots(slots, bookedSlots) {
+  const availableSlots = slots.filter(
+    (slot) =>
+      !bookedSlots.some(
+        (bookedSlot) =>
+          new Date(bookedSlot.meeting_start).getTime() >=
+            new Date(slot.start).getTime() &&
+          new Date(bookedSlot.meeting_end).getTime() <=
+            new Date(slot.end).getTime()
+      )
+  );
+  return availableSlots;
+}
 const availableSlots = getAvailableTimeSlots(slots, bookedSlots);
 console.log(availableSlots);
