@@ -6,7 +6,7 @@ const bookedSlots = [
     user_id: 1,
     meeting_link: "Dummy Link",
     meeting_password: "123456",
-    meeting_start: "2023-01-05T08:00:00.000Z",
+    meeting_start: "2023-01-05T09:00:00.000Z",
     meeting_end: "2023-01-05T10:00:00.000Z",
     meeting_details: null
   },
@@ -83,8 +83,7 @@ function getTimeSlots(ranges, interval) {
   return slots;
 }
 const slots = getTimeSlots(ranges, 60);
-console.log(slots);
-console.log(bookedSlots);
+
 function getAvailableTimeSlots(slots, bookedSlots) {
   const availableSlots = slots.filter((slot) =>
     bookedSlots.every(
@@ -98,20 +97,6 @@ function getAvailableTimeSlots(slots, bookedSlots) {
   return availableSlots;
 }
 const availableSlots = getAvailableTimeSlots(slots, bookedSlots);
+console.log(slots);
+console.log(bookedSlots);
 console.log(availableSlots);
-// !bookedSlots.some(
-//   (bookedSlot) =>
-//     new Date(bookedSlot.meeting_start).getTime() >=
-//       new Date(slot.start).getTime() &&
-//     new Date(bookedSlot.meeting_end).getTime() <=
-//       new Date(slot.end).getTime()
-// )
-
-// (new Date(bookedSlot.meeting_start).getTime() + 1 >=
-//             new Date(slot.start).getTime() &&
-//             new Date(bookedSlot.meeting_start).getTime() - 1 <=
-//               new Date(slot.end).getTime()) ||
-//           (new Date(bookedSlot.meeting_end).getTime() - 1 >=
-//             new Date(slot.start).getTime() &&
-//             new Date(bookedSlot.meeting_end).getTime() + 1 <=
-//               new Date(slot.end).getTime())
