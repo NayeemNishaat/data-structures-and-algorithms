@@ -1,3 +1,60 @@
+const bookedSlots = [
+  {
+    id: 1,
+    create_at: "2023-01-05",
+    update_at: "2023-01-05T00:00:00.000Z",
+    user_id: 1,
+    meeting_link: "Dummy Link",
+    meeting_password: "123456",
+    meeting_start: "2023-01-05T09:00:00.000Z",
+    meeting_end: "2023-01-05T10:00:00.000Z",
+    meeting_details: null
+  },
+  {
+    id: 2,
+    create_at: "2023-01-05",
+    update_at: "2023-01-05T00:00:00.000Z",
+    user_id: 1,
+    meeting_link: "Dummy Link",
+    meeting_password: "123456",
+    meeting_start: "2023-01-05T10:00:00.000Z",
+    meeting_end: "2023-01-05T11:00:00.000Z",
+    meeting_details: null
+  },
+  {
+    id: 3,
+    create_at: "2023-01-05",
+    update_at: "2023-01-05T00:00:00.000Z",
+    user_id: 1,
+    meeting_link: "Dummy Link",
+    meeting_password: "123456",
+    meeting_start: "2023-01-05T15:00:00.000Z",
+    meeting_end: "2023-01-05T16:00:00.000Z",
+    meeting_details: null
+  },
+  {
+    id: 4,
+    create_at: "2023-01-05",
+    update_at: "2023-01-05T00:00:00.000Z",
+    user_id: 1,
+    meeting_link: "Dummy Link",
+    meeting_password: "123456",
+    meeting_start: "2023-01-05T16:00:00.000Z",
+    meeting_end: "2023-01-05T17:00:00.000Z",
+    meeting_details: null
+  }
+];
+const ranges = [
+  {
+    start: "2001-01-01T08:00:00.000Z",
+    end: "2001-01-01T12:00:00.000Z"
+  },
+  {
+    start: "2001-01-01T14:00:00.000Z",
+    end: "2001-01-01T17:00:00.000Z"
+  }
+];
+
 function getTimeSlots(ranges, interval) {
   const slots = [];
 
@@ -25,18 +82,9 @@ function getTimeSlots(ranges, interval) {
   });
   return slots;
 }
-
-const slots = getTimeSlots(
-  [
-    {
-      start: "2001-01-01T08:00:00.000Z",
-      end: "2001-01-01T12:00:00.000Z"
-    },
-    {
-      start: "2001-01-01T14:00:00.000Z",
-      end: "2001-01-01T17:00:00.000Z"
-    }
-  ],
-  90
-);
+const slots = getTimeSlots(ranges, 60);
 console.log(slots);
+
+function getAvailableTimeSlots(slots, bookedSlots) {}
+const availableSlots = getAvailableTimeSlots(slots, bookedSlots);
+console.log(availableSlots);
