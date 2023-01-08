@@ -1,11 +1,9 @@
 function pivot(arr, start = 0, end = arr.length - 1) {
   let pointer = 0;
-
-  for (let i = 1; i <= end; i++) {
+  for (let i = 1; i <= end; i++)
     arr[start] > arr[i] &&
       pointer !== i &&
       (([arr[i], arr[pointer + 1]] = [arr[pointer + 1], arr[i]]), pointer++);
-  }
   [arr[start], arr[pointer]] = [arr[pointer], arr[start]];
   return arr;
 }
