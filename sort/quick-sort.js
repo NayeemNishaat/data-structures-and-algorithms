@@ -1,20 +1,48 @@
-function pivot(arr, start = 0, end = arr.length - 1) {
-  let pointer = 0;
-  for (let i = 1; i <= end; i++)
+function getPivot(arr, start = 0, end = arr.length) {
+  let pivot = start;
+  for (let i = start + 1; i < end; i++)
     arr[start] > arr[i] &&
-      pointer !== i &&
-      (([arr[i], arr[pointer + 1]] = [arr[pointer + 1], arr[i]]), pointer++);
-  [arr[start], arr[pointer]] = [arr[pointer], arr[start]];
-  return arr;
+      pivot !== i &&
+      (([arr[i], arr[pivot + 1]] = [arr[pivot + 1], arr[i]]), pivot++);
+  [arr[start], arr[pivot]] = [arr[pivot], arr[start]];
+  return pivot;
 }
 
-const arr = [4, 8, 2, 1, 5, 7, 6, 3];
-let i = 0;
-const recursive = function (arr) {
-  i++;
-  if (i > 6) return arr;
-  // const newArr = pivot(arr);
-  console.log(arr);
-  recursive(pivot(arr));
-};
-recursive(arr);
+const arr = [8, 4, 2, 7, 1, 5, 6, 3];
+let a = -1;
+while (a !== 0) {
+  a = getPivot(arr);
+}
+// console.log(getPivot(arr, 3));
+// console.log(getPivot(arr, 3));
+// console.log(getPivot(arr, 3));
+// console.log(getPivot(arr, 3));
+while (a !== 3) {
+  a = getPivot(arr, 3);
+}
+
+// console.log(getPivot(arr));
+// console.log(arr);
+
+// console.log(getPivot(arr));
+// console.log(arr);
+
+// console.log(getPivot(arr));
+// console.log(arr);
+// console.log(getPivot(arr));
+// console.log(arr);
+// console.log(getPivot(arr));
+
+// console.log(arr);
+// console.log(getPivot(arr, 3));
+// console.log(arr);
+// console.log(getPivot(arr, 3));
+// console.log(arr);
+// console.log(getPivot(arr, 3));
+// console.log(arr);
+// console.log(getPivot(arr, 3));
+// console.log(arr);
+// console.log(getPivot(arr, 3));
+// console.log(arr);
+// console.log(getPivot(arr, 3));
+console.log(arr);
