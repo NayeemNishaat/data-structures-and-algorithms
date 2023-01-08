@@ -1,4 +1,4 @@
-function getPivot(arr, start = 0, end = arr.length) {
+function getPivot(arr, start = 0, end = arr.length - 1) {
   let pivot = start;
   for (let i = start + 1; i <= end; i++)
     arr[start] > arr[i] &&
@@ -9,7 +9,7 @@ function getPivot(arr, start = 0, end = arr.length) {
 }
 
 const arr = [-10, 10, 8, 0, 100, 4, 2, 7, 1, 5, 6, 99, 0, 2, 3];
-function quickSort(arr, left = 0, right = arr.length) {
+function quickSort(arr, left = 0, right = arr.length - 1) {
   if (left >= right) return arr;
   const pivit = getPivot(arr, left, right);
   quickSort(arr, left, pivit - 1);
