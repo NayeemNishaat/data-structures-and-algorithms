@@ -7,4 +7,14 @@ function pivot(arr, start = 0, end = arr.length - 1) {
   [arr[start], arr[pointer]] = [arr[pointer], arr[start]];
   return arr;
 }
-console.log(pivot([4, 0, 8, 2, 1, 5, 7, 6, 3]));
+
+const arr = [4, 8, 2, 1, 5, 7, 6, 3];
+let i = 0;
+const recursive = function (arr) {
+  i++;
+  if (i > 6) return arr;
+  // const newArr = pivot(arr);
+  console.log(arr);
+  recursive(pivot(arr));
+};
+recursive(arr);
