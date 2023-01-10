@@ -21,21 +21,20 @@ function mostDigits(nums) {
 
 function radixSort(nums) {
   const maxDigits = mostDigits(nums);
-  let arr = nums;
-  for (i = 0; i < maxDigits; i++) {
-    const bucket = [];
-    while (bucket.length !== 10) bucket.push([]);
 
-    for (j = 0; j < arr.length; j++) {
-      bucket[getDigit(arr[j], i)].push(arr[j]);
+  for (i = 0; i < maxDigits; i++) {
+    const buckets = [];
+    while (buckets.length !== 10) buckets.push([]);
+
+    for (j = 0; j < nums.length; j++) {
+      buckets[getDigit(nums[j], i)].push(nums[j]);
     }
 
-    const newb = [];
-    bucket.forEach((b) => {
-      newb.push(b);
-    });
-    arr = newb.flat();
+    let temp = [];
+    buckets.forEach((bucket) => (temp = temp.concat(bucket)));
+    nums = temp;
   }
-  return arr;
+
+  return nums;
 }
 console.log(radixSort([657, 2, 454, 5, 476, 454, 43, 79, 7, 56, 90, 0, 87]));
