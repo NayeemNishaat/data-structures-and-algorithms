@@ -18,3 +18,24 @@ function mostDigits(nums) {
   return maxDigits;
 }
 // console.log(mostDigits([23, 567, 89, 977446, 90]));
+
+function radixSort(nums) {
+  const maxDigits = mostDigits(nums);
+  let arr = nums;
+  for (i = 0; i < maxDigits; i++) {
+    const bucket = [];
+    while (bucket.length !== 10) bucket.push([]);
+
+    for (j = 0; j < arr.length; j++) {
+      bucket[getDigit(arr[j], i)].push(arr[j]);
+    }
+
+    const newb = [];
+    bucket.forEach((b) => {
+      newb.push(b);
+    });
+    arr = newb.flat();
+  }
+  return arr;
+}
+console.log(radixSort([657, 2, 454, 5, 476, 454, 43, 79, 7, 56, 90, 0, 87]));
