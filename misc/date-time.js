@@ -111,3 +111,8 @@ console.log(availableSlots);
 // const date = new Date()
 // new Date(date.getFullYear(), date.getMonth(), 1); // Note: First day of the month
 // new Date(date.getFullYear(), date.getMonth() + 1, 0); // Note: Last day of the month
+
+// Remark: Very slow than Promise.all()
+// for await (const range of ranges) {
+//   await fetch("");
+// }
