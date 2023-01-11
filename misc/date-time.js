@@ -112,7 +112,68 @@ console.log(availableSlots);
 // new Date(date.getFullYear(), date.getMonth(), 1); // Note: First day of the month
 // new Date(date.getFullYear(), date.getMonth() + 1, 0); // Note: Last day of the month
 
-// Remark: Very slow than Promise.all()
-// for await (const range of ranges) {
+// Part: Promise.all()
+const promises = [1, 2, 3].map(async (arg) => await fetch(arg));
+const results = await Promise.all(promises);
+// Remark: When using promises inside loops its best to always use map and return the updated objects instead manipulating them by reference.
+
+// Part: for await
+// for await (const range of ranges) { // Remark: Very slow than Promise.all()
 //   await fetch("");
 // }
+
+const tzDates = [
+  {
+    start: "2023-01-11T14:00:00+06:00",
+    end: "2023-01-11T15:00:00+06:00"
+  },
+  {
+    start: "2023-01-12T22:00:00+06:00",
+    end: "2023-01-12T23:00:00+06:00"
+  },
+  {
+    start: "2023-01-13T17:00:00+06:00",
+    end: "2023-01-13T18:00:00+06:00"
+  },
+  {
+    start: "2023-01-13T20:00:00+06:00",
+    end: "2023-01-13T21:00:00+06:00"
+  },
+  {
+    start: "2023-01-14T01:00:00+06:00",
+    end: "2023-01-14T02:00:00+06:00"
+  },
+  {
+    start: "2023-01-14T02:00:00+06:00",
+    end: "2023-01-14T03:00:00+06:00"
+  },
+  {
+    start: "2023-01-17T15:00:00+06:00",
+    end: "2023-01-17T16:00:00+06:00"
+  },
+  {
+    start: "2023-01-17T18:00:00+06:00",
+    end: "2023-01-17T19:00:00+06:00"
+  },
+  {
+    start: "2023-01-17T19:00:00+06:00",
+    end: "2023-01-17T20:00:00+06:00"
+  },
+  {
+    start: "2023-01-17T20:00:00+06:00",
+    end: "2023-01-17T21:00:00+06:00"
+  },
+  {
+    start: "2023-01-18T14:00:00+06:00",
+    end: "2023-01-18T15:00:00+06:00"
+  }
+];
+
+const dateOB = {};
+
+tzDates.forEach((tzDate) => {
+  if (!dateOB[tzDate.start.split("T")[0]])
+    dateOB[tzDate.start.split("T")[0]] = [tzDate];
+  else dateOB[tzDate.start.split("T")[0]].push(tzDate);
+});
+console.log(dateOB);
