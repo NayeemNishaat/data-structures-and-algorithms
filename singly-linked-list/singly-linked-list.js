@@ -15,7 +15,8 @@ class SinglyLinkedList {
   push(val) {
     const newNode = new Node(val);
     if (!this.head) (this.head = this.tail = newNode), this.length++;
-    else (this.tail.next = this.tail = newNode), this.length++;
+    else (this.tail = this.tail.next = newNode), this.length++;
+    // Important: Note: First assign newNode to this.tail.next after that update this.tail to newNode.
   }
 }
 
