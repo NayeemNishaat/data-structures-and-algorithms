@@ -33,6 +33,8 @@ class SinglyLinkedList {
     (this.tail = newTail), (this.tail.next = null), this.length--;
 
     if (this.length === 0) this.head = this.tail = null;
+
+    return current; // Note: current is the last node which is removed
   }
 }
 
