@@ -41,7 +41,9 @@ class SinglyLinkedList {
     if (!this.head) return undefined;
 
     const current = this.head;
-    (this.head = this.head.next), this.length--;
+    (this.head = current.next), this.length--;
+
+    if (this.length === 0) this.tail = null;
 
     return current;
   }
@@ -55,6 +57,7 @@ list.push(17);
 list.push(170);
 list.pop();
 list.pop();
+list.shift();
 list.shift();
 list.shift();
 console.log(JSON.stringify(list, "", 2));
