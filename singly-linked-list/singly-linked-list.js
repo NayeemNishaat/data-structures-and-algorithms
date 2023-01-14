@@ -18,6 +18,24 @@ class SinglyLinkedList {
     else (this.tail = this.tail.next = newNode), this.length++;
     // Important: Note: First assign newNode to this.tail.next after that update this.tail to newNode.
   }
+
+  pop() {
+    if (!this.head) return undefined;
+
+    let current = this.head;
+    let newTail;
+
+    while (current.next) {
+      newTail = current;
+      current = current.next;
+    }
+
+    (this.tail = newTail), (this.tail.next = null), this.length--;
+
+    if (this.length === 0) this.head = this.tail = null;
+
+    return current;
+  }
 }
 
 const list = new SinglyLinkedList();
@@ -26,4 +44,6 @@ list.push(14);
 list.push(15);
 list.push(17);
 list.push(170);
+list.pop();
+list.pop();
 console.log(JSON.stringify(list, "", 2));
