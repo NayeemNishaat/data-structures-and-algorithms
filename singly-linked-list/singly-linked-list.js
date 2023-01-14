@@ -36,6 +36,15 @@ class SinglyLinkedList {
 
     return current; // Note: current is the last node which is removed
   }
+
+  shift() {
+    if (!this.head) return undefined;
+
+    const current = this.head;
+    (this.head = this.head.next), this.length--;
+
+    return current;
+  }
 }
 
 const list = new SinglyLinkedList();
@@ -46,4 +55,6 @@ list.push(17);
 list.push(170);
 list.pop();
 list.pop();
+list.shift();
+list.shift();
 console.log(JSON.stringify(list, "", 2));
