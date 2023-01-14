@@ -62,7 +62,16 @@ class SinglyLinkedList {
     let counter = 0;
     let target = this.head;
     while (counter !== index) (target = target.next), counter++;
-    return target.val;
+    return target;
+  }
+
+  set(index, val) {
+    const node = this.get(index);
+
+    if (node) {
+      node.val = val;
+      return true;
+    } else return false;
   }
 }
 
@@ -79,7 +88,7 @@ list.shift();
 list.unshift(100);
 list.unshift(110);
 list.unshift(150);
-
-console.log(list.get(0));
+list.get(0);
+list.set(1, "new");
 
 console.log(JSON.stringify(list, "", 2));
