@@ -104,6 +104,20 @@ class SinglyLinkedList {
     (prevNode.next = removedNode.next), this.length--;
     return removedNode;
   }
+
+  reverse() {
+    [this.head, this.tail] = [this.tail, this.head];
+
+    let prev = null;
+    let next;
+    let current = this.tail;
+    while (current) {
+      next = current.next;
+      current.next = prev;
+      prev = current;
+      current = next;
+    }
+  }
 }
 
 const list = new SinglyLinkedList();
@@ -111,17 +125,5 @@ list.push(12);
 list.push(14);
 list.push(15);
 list.push(17);
-list.push(170);
-list.pop();
-list.pop();
-list.shift();
-list.shift();
-list.unshift(100);
-list.unshift(110);
-list.unshift(150);
-list.get(0);
-list.set(1, "new");
-list.insert(0, 10);
-list.remove(2);
-
+list.reverse();
 console.log(JSON.stringify(list, "", 2));
