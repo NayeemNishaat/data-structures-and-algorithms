@@ -109,8 +109,9 @@ class SinglyLinkedList {
     [this.head, this.tail] = [this.tail, this.head];
 
     let prev = null;
-    let next;
     let current = this.tail;
+    let next;
+
     while (current) {
       next = current.next;
       current.next = prev;
