@@ -100,9 +100,9 @@ class SinglyLinkedList {
     if (index === this.length - 1) return !!this.pop();
 
     const prevNode = this.get(index - 1);
-    const nextNode = this.get(index);
-    (prevNode.next = nextNode.next), this.length--;
-    return nextNode;
+    const removedNode = prevNode.next.next;
+    (prevNode.next = removedNode.next), this.length--;
+    return removedNode;
   }
 }
 
