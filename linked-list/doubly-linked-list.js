@@ -23,11 +23,26 @@ class DoublyLinkedList {
     (this.tail.next = newNode), (newNode.prev = this.tail);
     (this.tail = newNode), this.length++;
   }
+
+  pop() {
+    if (!this.head) return undefined;
+    const popped = this.tail;
+    if (this.length === 1) {
+      (this.head = this.tail = null), this.length--;
+      return popped;
+    }
+
+    this.tail = popped.prev;
+    (popped.prev = this.tail.next = null), this.length--;
+
+    return popped;
+  }
 }
 
 const list = new DoublyLinkedList();
 list.push(1);
 list.push(2);
 list.push(3);
+list.pop();
 
 console.log(list);
