@@ -28,5 +28,6 @@ class DoublyLinkedList {
 const list = new DoublyLinkedList();
 list.push(1);
 list.push(2);
+list.push(3);
 
-console.log(JSON.stringify(list, null, 2));
+console.log(list);
