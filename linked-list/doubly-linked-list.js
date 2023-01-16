@@ -68,20 +68,18 @@ class DoublyLinkedList {
     if (index < 0 || index >= this.length) return undefined;
 
     if (index <= Math.floor(index / 2)) {
-      let start = this.head;
+      let init = this.head;
       let counter = 0;
-      while (start) {
-        if (counter === index) return start;
-        counter++;
-        start = start.next;
+      while (init) {
+        if (counter === index) return init;
+        counter++, (init = init.next);
       }
     } else {
-      let start = this.tail;
+      let init = this.tail;
       let counter = this.length - 1;
-      while (start) {
-        if (counter === index) return start;
-        counter--;
-        start = start.prev;
+      while (init) {
+        if (counter === index) return init;
+        counter--, (init = init.prev);
       }
     }
   }
@@ -97,4 +95,4 @@ list.unshift(1);
 list.push(3);
 list.push(4);
 
-console.log(list.get(4));
+console.log(list.get(3));
