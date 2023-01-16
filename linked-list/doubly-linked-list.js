@@ -95,5 +95,6 @@ list.pop();
 list.shift();
 list.unshift(1);
 list.push(3);
+list.push(4);
 
-console.log(list.get(1));
+console.log(list.get(4));
