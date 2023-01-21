@@ -15,8 +15,29 @@ class Stack {
   push(val) {
     const newNode = new Node(val);
     if (!this.first) (this.first = newNode), (this.last = newNode);
-    else (this.first.next = this.first), (this.first = newNode);
+    else (newNode.next = this.first), (this.first = newNode);
 
-    return ++this.size;
+    return ++this.size; // Important: Increments first, then returns
+  }
+
+  pop() {
+    if (!this.first) return undefined;
+    const { val } = this.first;
+    if (this.first === this.last) this.last = null;
+
+    this.first = this.first.next;
+    this.size--;
+
+    return val;
   }
 }
+
+const stack = new Stack();
+
+stack.push(1);
+stack.push(2);
+stack.push(3);
+
+console.log(stack.pop());
+console.log(stack.pop());
+console.log(stack.pop());
