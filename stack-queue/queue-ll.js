@@ -15,6 +15,26 @@ class Queue {
   enqueue(value) {
     const newNode = new Node(value);
     if (!this.first) (this.first = newNode), (this.last = newNode);
-    else (this.last.next = newNode), (this.last = newNode), this.length++;
+    else (this.last.next = newNode), (this.last = newNode);
+    this.size++;
+  }
+
+  dequeue() {
+    if (!this.first) return null;
+
+    if (this.first === this.last) this.last = null;
+    this.first = this.first.next;
+    this.size--;
   }
 }
+
+const queue = new Queue();
+queue.enqueue(1);
+queue.enqueue(2);
+queue.enqueue(3);
+queue.enqueue(4);
+queue.enqueue(5);
+queue.dequeue();
+queue.dequeue();
+queue.dequeue();
+console.log(queue);
