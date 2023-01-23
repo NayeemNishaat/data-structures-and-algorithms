@@ -10,4 +10,6 @@ class BST {
   constructor() {
     this.root = null;
   }
+
+  insert(value) {}
 }
