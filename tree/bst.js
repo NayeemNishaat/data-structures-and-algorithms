@@ -13,17 +13,26 @@ class BST {
 
   insert(value) {
     const newNode = new Node(value);
-    if (!this.root) this.root = newNode;
+    if (!this.root) {
+      this.root = newNode;
+      return;
+    }
 
     let currentRoot = this.root;
     while (true) {
       if (value === currentRoot.value) return undefined;
 
       if (value < currentRoot.value) {
-        if (!currentRoot.left) currentRoot.left = newNode;
+        if (!currentRoot.left) {
+          currentRoot.left = newNode;
+          return;
+        }
         currentRoot = currentRoot.left;
       } else {
-        if (!currentRoot.right) currentRoot.right = newNode;
+        if (!currentRoot.right) {
+          currentRoot.right = newNode;
+          return;
+        }
         currentRoot = currentRoot.right;
       }
     }
