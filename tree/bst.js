@@ -55,6 +55,21 @@ class BST {
       }
     }
   }
+
+  bfs(tree) {
+    const queue = [];
+    const result = [];
+    console.log(tree.root);
+    queue.push(tree.root);
+
+    while (queue.length) {
+      const currNode = queue.shift();
+      result.push(currNode.value);
+      if (currNode.left) queue.push(currNode.left);
+      if (currNode.right) queue.push(currNode.right);
+    }
+    return result;
+  }
 }
 
 const tree = new BST();
@@ -65,5 +80,4 @@ tree.insert(20);
 tree.insert(2);
 tree.insert(34);
 tree.insert(0);
-console.log(tree.find(340));
-// console.log(tree);
+console.log(tree.bfs(tree));
