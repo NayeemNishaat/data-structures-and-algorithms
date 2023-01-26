@@ -74,16 +74,27 @@ class BST {
     return result;
   }
 
-  dfs() {
-    const result = [],
-      current = this.root;
+  dfsPre() {
+    const result = [];
 
-    function helper(node) {
+    function traverse(node) {
       result.push(node.value);
-      if (node.left) helper(node.left);
-      if (node.right) helper(node.right);
+      if (node.left) traverse(node.left);
+      if (node.right) traverse(node.right);
     }
-    helper(current);
+    traverse(this.root);
+    return result;
+  }
+
+  dfsPost() {
+    const result = [];
+
+    function traverse(node) {
+      if (node.left) traverse(node.left);
+      if (node.right) traverse(node.right);
+      result.push(node.value);
+    }
+    traverse(this.root);
     return result;
   }
 }
@@ -96,4 +107,5 @@ tree.insert(3);
 tree.insert(8);
 tree.insert(20);
 console.log(tree.bfs());
-console.log(tree.dfs());
+console.log(tree.dfsPre());
+console.log(tree.dfsPost());
