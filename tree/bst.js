@@ -73,6 +73,19 @@ class BST {
     }
     return result;
   }
+
+  dfs() {
+    const result = [],
+      current = this.root;
+
+    function helper(node) {
+      result.push(node.value);
+      if (node.left) helper(node.left);
+      if (node.right) helper(node.right);
+    }
+    helper(current);
+    return result;
+  }
 }
 
 const tree = new BST();
@@ -83,3 +96,4 @@ tree.insert(3);
 tree.insert(8);
 tree.insert(20);
 console.log(tree.bfs());
+console.log(tree.dfs());
