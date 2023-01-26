@@ -78,9 +78,9 @@ class BST {
     const result = [];
 
     function traverse(node) {
-      result.push(node.value);
-      if (node.left) traverse(node.left);
-      if (node.right) traverse(node.right);
+      result.push(node.value),
+        node.left && traverse(node.left),
+        node.right && traverse(node.right);
     }
     traverse(this.root);
     return result;
@@ -88,12 +88,11 @@ class BST {
 
   dfsPost() {
     const result = [];
-
-    function traverse(node) {
-      if (node.left) traverse(node.left);
-      if (node.right) traverse(node.right);
-      result.push(node.value);
-    }
+    const traverse = (node) => (
+      node.left && traverse(node.left),
+      node.right && traverse(node.right),
+      result.push(node.value)
+    );
     traverse(this.root);
     return result;
   }
@@ -101,11 +100,11 @@ class BST {
   dfsIn() {
     const result = [];
 
-    function traverse(node) {
-      if (node.left) traverse(node.left);
-      result.push(node.value);
-      if (node.right) traverse(node.right);
-    }
+    const traverse = function (node) {
+      node.left && traverse(node.left),
+        result.push(node.value),
+        node.right && traverse(node.right);
+    };
     traverse(this.root);
     return result;
   }
