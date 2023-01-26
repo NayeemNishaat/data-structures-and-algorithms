@@ -57,13 +57,16 @@ class BST {
   }
 
   bfs() {
-    const queue = [];
-    const result = [];
+    const queue = [],
+      result = [];
+    let current = this.root;
+
     if (!this.root) return result;
-    queue.push(this.root);
+    queue.push(current);
 
     while (queue.length) {
-      const current = queue.shift();
+      current = queue.shift(); // Remark: It's not a good idea to declare variables in a loop because that creates the variables each time the loop runs hence, waste of memory!
+
       result.push(current.value);
       if (current.left) queue.push(current.left);
       if (current.right) queue.push(current.right);
