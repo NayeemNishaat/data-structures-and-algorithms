@@ -56,17 +56,17 @@ class BST {
     }
   }
 
-  bfs(tree) {
+  bfs() {
     const queue = [];
     const result = [];
-    console.log(tree.root);
-    queue.push(tree.root);
+    if (!this.root) return result;
+    queue.push(this.root);
 
     while (queue.length) {
-      const currNode = queue.shift();
-      result.push(currNode.value);
-      if (currNode.left) queue.push(currNode.left);
-      if (currNode.right) queue.push(currNode.right);
+      const current = queue.shift();
+      result.push(current.value);
+      if (current.left) queue.push(current.left);
+      if (current.right) queue.push(current.right);
     }
     return result;
   }
@@ -80,4 +80,4 @@ tree.insert(20);
 tree.insert(2);
 tree.insert(34);
 tree.insert(0);
-console.log(tree.bfs(tree));
+console.log(tree.bfs());
