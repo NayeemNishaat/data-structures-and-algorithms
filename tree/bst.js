@@ -97,6 +97,18 @@ class BST {
     traverse(this.root);
     return result;
   }
+
+  dfsIn() {
+    const result = [];
+
+    function traverse(node) {
+      if (node.left) traverse(node.left);
+      result.push(node.value);
+      if (node.right) traverse(node.right);
+    }
+    traverse(this.root);
+    return result;
+  }
 }
 
 const tree = new BST();
@@ -109,3 +121,4 @@ tree.insert(20);
 console.log(tree.bfs());
 console.log(tree.dfsPre());
 console.log(tree.dfsPost());
+console.log(tree.dfsIn());
