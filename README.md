@@ -1,2 +1,3 @@
 # DSA
-DSA with JS
+
+Trying to implement DSA in JavaScript
