@@ -5,13 +5,13 @@ class Node {
   }
 }
 
-class minBinaryHeap {
+class priorityQueue {
   constructor() {
     this.values = [];
   }
 
-  enqueue(element, priority) {
-    const newNode = new Node(element, priority);
+  enqueue(val, priority) {
+    const newNode = new Node(val, priority);
     const values = this.values;
     values.push(newNode);
     let idx = values.length - 1,
@@ -51,11 +51,13 @@ class minBinaryHeap {
   }
 }
 
-const heap = new minBinaryHeap();
+const heap = new priorityQueue();
 
-heap.enqueue("Help", 6);
-heap.enqueue("Urgent", 3);
+heap.enqueue("Help", 7);
+heap.enqueue("Urgent", 5);
 heap.enqueue("Immediate", 2);
+heap.enqueue("Emergency", 0);
+
 console.log(heap.dequeue());
 console.log(heap.dequeue());
 console.log(heap.dequeue());
