@@ -25,7 +25,7 @@ class minBinaryHeap {
     }
   }
 
-  extractMax() {
+  dequeue() {
     const vals = this.values;
     [vals[0], vals[vals.length - 1]] = [vals[vals.length - 1], vals[0]];
     const extracted = vals.pop();
@@ -34,8 +34,11 @@ class minBinaryHeap {
       left = 2 * parentIdx + 1,
       right = 2 * parentIdx + 2;
 
-    while (vals[left] > vals[parentIdx] || vals[right] > vals[parentIdx]) {
-      if (vals[left] > vals[right] || !vals[right])
+    while (
+      vals[left]?.priority < vals[parentIdx]?.priority ||
+      vals[right]?.priority < vals[parentIdx]?.priority
+    ) {
+      if (vals[left].priority < vals[right].priority || !vals[right])
         ([vals[left], vals[parentIdx]] = [vals[parentIdx], vals[left]]),
           (parentIdx = left);
       else
@@ -53,5 +56,7 @@ const heap = new minBinaryHeap();
 heap.enqueue("Help", 6);
 heap.enqueue("Urgent", 3);
 heap.enqueue("Immediate", 2);
-
-console.log(heap.values);
+console.log(heap.dequeue());
+console.log(heap.dequeue());
+console.log(heap.dequeue());
+console.log(heap.dequeue());
