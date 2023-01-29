@@ -27,7 +27,7 @@ class maxBinaryHeap {
       right = 2 * parentIdx + 2;
 
     while (vals[left] > vals[parentIdx] || vals[right] > vals[parentIdx]) {
-      if (vals[left] > vals[right])
+      if (vals[left] > vals[right] || !vals[right])
         ([vals[left], vals[parentIdx]] = [vals[parentIdx], vals[left]]),
           (parentIdx = left);
       else
@@ -49,8 +49,14 @@ heap.insert(18);
 heap.insert(27);
 heap.insert(12);
 heap.insert(55);
-heap.insert(1);
 
-console.log(heap);
+console.log(heap.values);
 heap.extractMax();
-console.log(heap);
+heap.extractMax();
+heap.extractMax();
+heap.extractMax();
+heap.extractMax();
+heap.extractMax();
+heap.extractMax();
+heap.extractMax();
+console.log(heap.values);
