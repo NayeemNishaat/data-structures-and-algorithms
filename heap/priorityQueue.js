@@ -62,3 +62,5 @@ console.log(heap.dequeue());
 console.log(heap.dequeue());
 console.log(heap.dequeue());
 console.log(heap.dequeue());
+
+// Note: If we want to handle things that have same priority level then we can use another property in the node class like time and then when dequeuing if the priority levels are same we can compare the time and other properties to measure the priority!
