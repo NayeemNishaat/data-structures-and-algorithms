@@ -8,7 +8,7 @@ class HashTable {
     const WEIRD_PRIME = 31;
     for (let i = 0; i < Math.min(key.length, 100); i++) {
       const char = key[i];
-      const value = char.charCodeAt(0) - 96;
+      const value = char.charCodeAt(0);
       total = (total * WEIRD_PRIME + value) % this.keyMap.length;
     }
     return total;
@@ -29,8 +29,24 @@ class HashTable {
 
     return undefined;
   }
+
+  keys() {
+    const keys = new Set();
+    this.keyMap.forEach((kms) => kms.forEach((km) => keys.add(km[0])));
+    return keys;
+  }
+
+  values() {
+    const values = [];
+    this.keyMap.forEach((kms) => kms.forEach((km) => values.push(km[1])));
+    return values;
+  }
 }
 
 const ht = new HashTable();
 ht.set("Nayeem", "Nishaat");
+ht.set("Nayeem", "Nishaat");
+ht.set("Yeakub", "Nishaat");
 console.log(ht.get("Nayeem"));
+console.log(ht.keys());
+console.log(ht.values());
