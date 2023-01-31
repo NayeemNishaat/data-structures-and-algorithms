@@ -30,12 +30,16 @@ class HashTable {
     return undefined;
   }
 
+  // Remark: Returns only unique keys
   keys() {
-    const keys = new Set();
-    this.keyMap.forEach((kms) => kms.forEach((km) => keys.add(km[0])));
+    const keys = [];
+    this.keyMap.forEach((kms) =>
+      kms.forEach((km) => keys.indexOf(km[0]) === -1 && keys.push(km[0]))
+    ); // Note: includes/find/findIndex/search can also be used!
     return keys;
   }
 
+  // Remark: Returns all values
   values() {
     const values = [];
     this.keyMap.forEach((kms) => kms.forEach((km) => values.push(km[1])));
@@ -47,6 +51,7 @@ const ht = new HashTable();
 ht.set("Nayeem", "Nishaat");
 ht.set("Nayeem", "Nishaat");
 ht.set("Yeakub", "Nishaat");
+ht.set("Yeakub", "Ali");
 console.log(ht.get("Nayeem"));
 console.log(ht.keys());
 console.log(ht.values());
