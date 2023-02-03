@@ -30,15 +30,12 @@ class graph {
     const visited = {};
     const adjacencyList = this.adjacencyList;
 
-    function dfs(vertex) {
-      if (!adjacencyList[vertex]) return;
-
+    (function dfs(vertex) {
+      if (!vertex) return;
       result.push(vertex);
       visited[vertex] = true;
-
       adjacencyList[vertex].forEach((vtx) => !visited[vtx] && dfs(vtx));
-    }
-    dfs(vertex);
+    })(vertex);
 
     return result;
   }
