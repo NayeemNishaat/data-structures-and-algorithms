@@ -56,6 +56,23 @@ class graph {
     }
     return result;
   }
+
+  bfs(vertex) {
+    const queue = [vertex];
+    const result = [];
+    const visited = {};
+
+    while (queue.length) {
+      const vtx = queue.shift();
+
+      if (!visited[vtx]) {
+        result.push(vtx);
+        visited[vtx] = true;
+        queue.push(...this.adjacencyList[vtx].filter((v) => !visited[v]));
+      }
+    }
+    return result;
+  }
 }
 
 const g = new graph();
@@ -75,3 +92,4 @@ g.addEdge("D", "F");
 g.addEdge("E", "F");
 console.log(g.dfsRecursuve("A"));
 console.log(g.dfsIterative("A"));
+console.log(g.bfs("A"));
