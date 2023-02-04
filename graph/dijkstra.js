@@ -161,8 +161,7 @@ class graph {
       this.adjacencyList[val].forEach(({ node, weight }) => {
         if (visited[node]) return;
 
-        const distance =
-          (distances[val] === Infinity ? 0 : distances[val]) + weight;
+        const distance = distances[val] + weight;
 
         if (distance < distances[node]) {
           (distances[node] = distance), (previous[node] = val);
@@ -201,4 +200,4 @@ g.addEdge("E", "F", 1);
 // console.log(g.dfsRecursuve("A"));
 // console.log(g.dfsIterative("A"));
 // console.log(g.bfs("A"));
-console.log(g.dijkstra("A", "C"));
+console.log(g.dijkstra("A", "F"));
