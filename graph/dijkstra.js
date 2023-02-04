@@ -1,3 +1,58 @@
+class Node {
+  constructor(val, priority) {
+    this.val = val;
+    this.priority = priority;
+  }
+}
+
+class priorityQueue {
+  constructor() {
+    this.values = [];
+  }
+
+  enqueue(val, priority) {
+    const newNode = new Node(val, priority);
+    const values = this.values;
+    values.push(newNode);
+    let idx = values.length - 1,
+      parentIdx = Math.floor((idx - 1) / 2);
+
+    while (values[idx].priority < values[parentIdx]?.priority) {
+      [values[idx], values[parentIdx]] = [values[parentIdx], values[idx]];
+
+      idx = parentIdx;
+      parentIdx = Math.floor((idx - 1) / 2);
+    }
+  }
+
+  dequeue() {
+    const vals = this.values;
+    [vals[0], vals[vals.length - 1]] = [vals[vals.length - 1], vals[0]];
+    const extracted = vals.pop();
+
+    let parentIdx = 0,
+      left = 2 * parentIdx + 1,
+      right = 2 * parentIdx + 2;
+
+    while (
+      vals[left]?.priority < vals[parentIdx]?.priority ||
+      vals[right]?.priority < vals[parentIdx]?.priority
+    ) {
+      if (vals[left].priority < vals[right].priority || !vals[right])
+        ([vals[left], vals[parentIdx]] = [vals[parentIdx], vals[left]]),
+          (parentIdx = left);
+      else
+        ([vals[right], vals[parentIdx]] = [vals[parentIdx], vals[right]]),
+          (parentIdx = right);
+
+      (left = 2 * parentIdx + 1), (right = 2 * parentIdx + 2);
+    }
+    return extracted;
+  }
+}
+
+const pq = new priorityQueue();
+
 class graph {
   constructor() {
     this.adjacencyList = {};
@@ -11,8 +66,8 @@ class graph {
     if (!this.adjacencyList[v1] || !this.adjacencyList[v2]) return;
     if (!this.adjacencyList[v1].find(({ node }) => node === v2))
       this.adjacencyList[v1].push({ node: v2, weight }); // Remark: Now it's directed graph since, we are not adding the edge in reverse direction!
-    // if (!this.adjacencyList[v2].find(({ node }) => node === v1))
-    // this.adjacencyList[v2].push({ node: v1, weight });
+    if (!this.adjacencyList[v2].find(({ node }) => node === v1))
+      this.adjacencyList[v2].push({ node: v1, weight });
   }
 
   removeEdge(v1, v2) {
@@ -84,6 +139,37 @@ class graph {
     }
     return result;
   }
+
+  dijkstra(start, end) {
+    const distances = {},
+      previous = {},
+      visited = {};
+
+    Object.keys(this.adjacencyList).forEach((node) => {
+      node === start
+        ? ((distances[node] = 0), pq.enqueue(node, 0))
+        : ((distances[node] = Infinity), pq.enqueue(node, Infinity));
+      previous[node] = null;
+    });
+
+    while (pq.values.length) {
+      const { val } = pq.dequeue();
+      visited[val] = true;
+      if (val === end) return distances;
+
+      this.adjacencyList[val].forEach((v) => {
+        const distance =
+          (distances[v.node] === Infinity ? 0 : distances[v.node]) + v.weight;
+
+        if (distance < distances[v.node]) {
+          distances[v.node] = distance;
+          previous[v.node] = val;
+          pq.enqueue(v.node, distance);
+        }
+      });
+    }
+    return { distances, previous };
+  }
 }
 
 const g = new graph();
@@ -103,7 +189,8 @@ g.addEdge("D", "F", 2);
 g.addEdge("E", "F", 4);
 // g.removeEdge("E", "F");
 // g.removeVertex("A");
-console.log(g.adjacencyList);
-console.log(g.dfsRecursuve("A"));
-console.log(g.dfsIterative("A"));
-console.log(g.bfs("A"));
+// console.log(g.adjacencyList);
+// console.log(g.dfsRecursuve("A"));
+// console.log(g.dfsIterative("A"));
+// console.log(g.bfs("A"));
+console.log(g.dijkstra("A", "E"));
