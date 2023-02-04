@@ -43,8 +43,7 @@ class graph {
   dfsIterative(vertex) {
     const result = [];
     const visited = {};
-    const stack = [];
-    stack.push(vertex);
+    const stack = [vertex];
 
     while (stack.length) {
       const vtx = stack.pop();
