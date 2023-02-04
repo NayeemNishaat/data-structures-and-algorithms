@@ -44,9 +44,10 @@ class graph {
     const result = [];
     const visited = {};
     const stack = [vertex];
+    let vtx;
 
     while (stack.length) {
-      const vtx = stack.pop();
+      vtx = stack.pop();
 
       if (!visited[vtx]) {
         result.push(vtx);
@@ -61,9 +62,10 @@ class graph {
     const queue = [vertex];
     const result = [];
     const visited = {};
+    let vtx;
 
     while (queue.length) {
-      const vtx = queue.shift();
+      vtx = queue.shift();
 
       if (!visited[vtx]) {
         result.push(vtx);
