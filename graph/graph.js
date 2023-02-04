@@ -31,7 +31,7 @@ class graph {
     const adjacencyList = this.adjacencyList;
 
     (function dfs(vertex) {
-      if (!vertex) return;
+      // if (!vertex) return; // Important: Remark: We can omit the base case here because this recursive function will be called fixed number of times(length of adjacencyList[vertex])
       result.push(vertex);
       visited[vertex] = true;
       adjacencyList[vertex].forEach((vtx) => !visited[vtx] && dfs(vtx));
