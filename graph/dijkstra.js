@@ -143,7 +143,9 @@ class graph {
   dijkstra(start, end) {
     const distances = {},
       previous = {},
-      visited = {};
+      visited = {},
+      result = [end];
+    let current = end;
 
     Object.keys(this.adjacencyList).forEach((node) =>
       node === start ? (distances[node] = 0) : (distances[node] = Infinity)
@@ -154,7 +156,7 @@ class graph {
       const { val } = pq.dequeue();
       visited[val] = true;
 
-      if (val === end) return { distances, previous };
+      if (val === end) break;
 
       this.adjacencyList[val].forEach(({ node, weight }) => {
         if (visited[node]) return;
@@ -168,7 +170,12 @@ class graph {
         }
       });
     }
-    return { distances, previous };
+
+    while (current !== start) {
+      result.push(previous[current]);
+      current = previous[current];
+    }
+    return result.reverse();
   }
 }
 
@@ -194,4 +201,4 @@ g.addEdge("E", "F", 1);
 // console.log(g.dfsRecursuve("A"));
 // console.log(g.dfsIterative("A"));
 // console.log(g.bfs("A"));
-console.log(g.dijkstra("A", "E"));
+console.log(g.dijkstra("A", "C"));
