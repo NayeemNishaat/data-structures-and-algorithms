@@ -15,11 +15,15 @@ class graph {
       this.adjacencyList[v2].push({ node: v1, weight });
   }
 
-  // removeEdge(v1, v2) {
-  //   if (!this.adjacencyList[v1] || !this.adjacencyList[v2]) return;
-  //   this.adjacencyList[v1] = this.adjacencyList[v1].filter((v) => v !== v2);
-  //   this.adjacencyList[v2] = this.adjacencyList[v2].filter((v) => v !== v1);
-  // }
+  removeEdge(v1, v2) {
+    if (!this.adjacencyList[v1] || !this.adjacencyList[v2]) return;
+    this.adjacencyList[v1] = this.adjacencyList[v1].filter(
+      ({ node }) => node !== v2
+    );
+    this.adjacencyList[v2] = this.adjacencyList[v2].filter(
+      ({ node }) => node !== v1
+    );
+  }
 
   // removeVertex(v) {
   //   if (!this.adjacencyList[v]) return;
@@ -100,7 +104,7 @@ g.addEdge("C", "E", 1);
 g.addEdge("D", "E", 9);
 g.addEdge("D", "F", 5);
 g.addEdge("E", "F", 7);
-g.addEdge("E", "F", 7);
+g.removeEdge("E", "F", 7);
 console.log(g.adjacencyList);
 // console.log(g.dfsRecursuve("A"));
 // console.log(g.dfsIterative("A"));
