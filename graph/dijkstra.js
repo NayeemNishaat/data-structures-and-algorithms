@@ -31,20 +31,19 @@ class graph {
     delete this.adjacencyList[v];
   }
 
-  // dfsRecursuve(vertex) {
-  //   const result = [];
-  //   const visited = {};
-  //   const adjacencyList = this.adjacencyList;
+  dfsRecursuve(vertex) {
+    const result = [];
+    const visited = {};
+    const adjacencyList = this.adjacencyList;
 
-  //   (function dfs(vertex) {
-  //     // if (!vertex) return; // Important: Remark: We can omit the base case here because this recursive function will be called fixed number of times(length of adjacencyList[vertex])
-  //     result.push(vertex);
-  //     visited[vertex] = true;
-  //     adjacencyList[vertex].forEach((vtx) => !visited[vtx] && dfs(vtx));
-  //   })(vertex);
+    (function dfs(vertex) {
+      result.push(vertex);
+      visited[vertex] = true;
+      adjacencyList[vertex].forEach(({ node }) => !visited[node] && dfs(node));
+    })(vertex);
 
-  //   return result;
-  // }
+    return result;
+  }
 
   // dfsIterative(vertex) {
   //   const result = [];
@@ -104,9 +103,8 @@ g.addEdge("C", "E", 1);
 g.addEdge("D", "E", 9);
 g.addEdge("D", "F", 5);
 g.addEdge("E", "F", 7);
-g.removeEdge("E", "F");
-g.removeVertex("A");
-console.log(g.adjacencyList);
-// console.log(g.dfsRecursuve("A"));
+// g.removeEdge("E", "F");
+// g.removeVertex("A");
+console.log(g.dfsRecursuve("A"));
 // console.log(g.dfsIterative("A"));
 // console.log(g.bfs("A"));
