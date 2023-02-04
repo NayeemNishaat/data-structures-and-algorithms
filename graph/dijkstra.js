@@ -45,26 +45,26 @@ class graph {
     return result;
   }
 
-  // dfsIterative(vertex) {
-  //   const result = [];
-  //   const visited = {};
-  //   const stack = [vertex];
-  //   let vtx;
+  dfsIterative(vertex) {
+    const result = [];
+    const visited = {};
+    const stack = [{ node: vertex }];
 
-  //   while (stack.length) {
-  //     vtx = stack.pop();
+    while (stack.length) {
+      const { node } = stack.pop();
 
-  //     if (!visited[vtx]) {
-  //       result.push(vtx);
-  //       visited[vtx] = true;
-  //       stack.push(...this.adjacencyList[vtx].filter((v) => !visited[v]));
-  //       // stack.push(
-  //       //   ...this.adjacencyList[vtx].reverse().filter((v) => !visited[v])
-  //       // );
-  //     }
-  //   }
-  //   return result;
-  // }
+      if (!visited[node]) {
+        result.push(node);
+        visited[node] = true;
+        stack.push(
+          ...this.adjacencyList[node]
+            .reverse()
+            .filter(({ node }) => !visited[node])
+        );
+      }
+    }
+    return result;
+  }
 
   // bfs(vertex) {
   //   const queue = [vertex];
@@ -101,10 +101,10 @@ g.addEdge("A", "C", 5);
 g.addEdge("B", "D", 3);
 g.addEdge("C", "E", 1);
 g.addEdge("D", "E", 9);
-g.addEdge("D", "F", 5);
-g.addEdge("E", "F", 7);
+g.addEdge("D", "F", 2);
+g.addEdge("E", "F", 4);
 // g.removeEdge("E", "F");
 // g.removeVertex("A");
 console.log(g.dfsRecursuve("A"));
-// console.log(g.dfsIterative("A"));
+console.log(g.dfsIterative("A"));
 // console.log(g.bfs("A"));
