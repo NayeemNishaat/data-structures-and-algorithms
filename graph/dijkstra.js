@@ -147,9 +147,8 @@ class graph {
       result = [end];
     let current = end;
 
-    Object.keys(this.adjacencyList).forEach((node) =>
-      node === start ? (distances[node] = 0) : (distances[node] = Infinity)
-    );
+    for (const node in this.adjacencyList)
+      node === start ? (distances[node] = 0) : (distances[node] = Infinity);
     pq.enqueue(start, 0);
 
     while (pq.values.length) {
