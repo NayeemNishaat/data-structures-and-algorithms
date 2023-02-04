@@ -38,7 +38,7 @@ class priorityQueue {
       vals[left]?.priority < vals[parentIdx]?.priority ||
       vals[right]?.priority < vals[parentIdx]?.priority
     ) {
-      if (vals[left].priority < vals[right].priority || !vals[right])
+      if (!vals[right] || vals[left].priority < vals[right].priority)
         ([vals[left], vals[parentIdx]] = [vals[parentIdx], vals[left]]),
           (parentIdx = left);
       else

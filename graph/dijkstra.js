@@ -38,7 +38,7 @@ class priorityQueue {
       vals[left]?.priority < vals[parentIdx]?.priority ||
       vals[right]?.priority < vals[parentIdx]?.priority
     ) {
-      if (vals[left].priority < vals[right].priority || !vals[right])
+      if (!vals[right] || vals[left].priority < vals[right].priority)
         ([vals[left], vals[parentIdx]] = [vals[parentIdx], vals[left]]),
           (parentIdx = left);
       else
@@ -145,12 +145,11 @@ class graph {
       previous = {},
       visited = {};
 
-    Object.keys(this.adjacencyList).forEach((node) => {
-      node === start
-        ? ((distances[node] = 0), pq.enqueue(node, 0))
-        : ((distances[node] = Infinity), pq.enqueue(node, Infinity));
-      previous[node] = null;
-    });
+    Object.keys(this.adjacencyList).forEach((node) =>
+      node === start ? (distances[node] = 0) : (distances[node] = Infinity)
+    );
+    pq.enqueue(start, 0);
+
     while (pq.values.length) {
       const { val } = pq.dequeue();
       visited[val] = true;
@@ -159,12 +158,12 @@ class graph {
 
       this.adjacencyList[val].forEach(({ node, weight }) => {
         if (visited[node]) return;
+
         const distance =
           (distances[val] === Infinity ? 0 : distances[val]) + weight;
 
         if (distance < distances[node]) {
-          distances[node] = distance;
-          previous[node] = val;
+          (distances[node] = distance), (previous[node] = val);
           pq.enqueue(node, distance);
         }
       });
@@ -191,7 +190,7 @@ g.addEdge("D", "F", 1);
 g.addEdge("E", "F", 1);
 // g.removeEdge("E", "F");
 // g.removeVertex("A");
-console.log(g.adjacencyList);
+// console.log(g.adjacencyList);
 // console.log(g.dfsRecursuve("A"));
 // console.log(g.dfsIterative("A"));
 // console.log(g.bfs("A"));
