@@ -151,20 +151,21 @@ class graph {
         : ((distances[node] = Infinity), pq.enqueue(node, Infinity));
       previous[node] = null;
     });
-
     while (pq.values.length) {
       const { val } = pq.dequeue();
       visited[val] = true;
-      if (val === end) return distances;
 
-      this.adjacencyList[val].forEach((v) => {
+      if (val === end) return { distances, previous };
+
+      this.adjacencyList[val].forEach(({ node, weight }) => {
+        if (visited[node]) return;
         const distance =
-          (distances[v.node] === Infinity ? 0 : distances[v.node]) + v.weight;
+          (distances[val] === Infinity ? 0 : distances[val]) + weight;
 
-        if (distance < distances[v.node]) {
-          distances[v.node] = distance;
-          previous[v.node] = val;
-          pq.enqueue(v.node, distance);
+        if (distance < distances[node]) {
+          distances[node] = distance;
+          previous[node] = val;
+          pq.enqueue(node, distance);
         }
       });
     }
@@ -180,16 +181,17 @@ g.addVertex("C");
 g.addVertex("D");
 g.addVertex("E");
 g.addVertex("F");
-g.addEdge("A", "B", 7);
-g.addEdge("A", "C", 5);
-g.addEdge("B", "D", 3);
-g.addEdge("C", "E", 1);
-g.addEdge("D", "E", 9);
-g.addEdge("D", "F", 2);
-g.addEdge("E", "F", 4);
+g.addEdge("A", "B", 4);
+g.addEdge("A", "C", 2);
+g.addEdge("B", "E", 3);
+g.addEdge("C", "D", 2);
+g.addEdge("C", "F", 4);
+g.addEdge("D", "E", 3);
+g.addEdge("D", "F", 1);
+g.addEdge("E", "F", 1);
 // g.removeEdge("E", "F");
 // g.removeVertex("A");
-// console.log(g.adjacencyList);
+console.log(g.adjacencyList);
 // console.log(g.dfsRecursuve("A"));
 // console.log(g.dfsIterative("A"));
 // console.log(g.bfs("A"));
