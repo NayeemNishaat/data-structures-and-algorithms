@@ -10,9 +10,9 @@ class graph {
   addEdge(v1, v2, weight) {
     if (!this.adjacencyList[v1] || !this.adjacencyList[v2]) return;
     if (!this.adjacencyList[v1].find(({ node }) => node === v2))
-      this.adjacencyList[v1].push({ node: v2, weight });
-    if (!this.adjacencyList[v2].find(({ node }) => node === v1))
-      this.adjacencyList[v2].push({ node: v1, weight });
+      this.adjacencyList[v1].push({ node: v2, weight }); // Remark: Now it's directed graph since, we are not adding the edge in reverse direction!
+    // if (!this.adjacencyList[v2].find(({ node }) => node === v1))
+    // this.adjacencyList[v2].push({ node: v1, weight });
   }
 
   removeEdge(v1, v2) {
@@ -103,6 +103,7 @@ g.addEdge("D", "F", 2);
 g.addEdge("E", "F", 4);
 // g.removeEdge("E", "F");
 // g.removeVertex("A");
+console.log(g.adjacencyList);
 console.log(g.dfsRecursuve("A"));
 console.log(g.dfsIterative("A"));
 console.log(g.bfs("A"));
