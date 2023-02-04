@@ -53,6 +53,9 @@ class graph {
         result.push(vtx);
         visited[vtx] = true;
         stack.push(...this.adjacencyList[vtx].filter((v) => !visited[v]));
+        // stack.push(
+        //   ...this.adjacencyList[vtx].reverse().filter((v) => !visited[v])
+        // );
       }
     }
     return result;
