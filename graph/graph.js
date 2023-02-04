@@ -52,7 +52,7 @@ class graph {
       if (!visited[vtx]) {
         result.push(vtx);
         visited[vtx] = true;
-        stack.push(...this.adjacencyList[vtx]);
+        stack.push(...this.adjacencyList[vtx].filter((v) => !visited[v]));
       }
     }
     return result;
