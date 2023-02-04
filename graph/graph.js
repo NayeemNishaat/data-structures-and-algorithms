@@ -70,10 +70,10 @@ class graph {
       if (!visited[vtx]) {
         result.push(vtx);
         visited[vtx] = true;
-        // queue.push(...this.adjacencyList[vtx].filter((v) => !visited[v]));
+        // queue.push(...this.adjacencyList[vtx].filter((v) => !visited[v])); // Note: L-R
         queue.push(
           ...this.adjacencyList[vtx].reverse().filter((v) => !visited[v])
-        );
+        ); // Note: R-L
       }
     }
     return result;
