@@ -25,7 +25,7 @@ function maxSubarraySumEff(arr, num) {
 
   for (let i = 0; i < num; i++) ini += arr[i];
 
-  for (let i = 1; i < arr.length - num + 1; i++) {
+  for (let i = num; i < arr.length; i++) {
     ini = ini - arr[i - 1] + arr[i + num - 1];
     if (ini > max) max = ini;
   }
