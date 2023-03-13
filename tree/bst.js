@@ -38,6 +38,40 @@ class BST {
     }
   }
 
+  removeNode(current, value) {
+    if (current === null) return current;
+
+    // Part: Match Found
+    if (value === current.value) {
+      // Subpart: No Child or One Child
+      if (current.left === null && current.right === null) return null;
+      else if (current.left === null) return current.right;
+      else if (current.right === null) return current.left;
+      // Subpart: Two Children
+      else {
+        // Subpart: Get the Smallest Node in the Right Subtree
+        let tempNode = this.kthSmallestNode(current.right);
+        current.value = tempNode.value;
+
+        // Subpart: Delete the Inorder Successor
+        current.right = this.removeNode(current.right, tempNode.value);
+        return current;
+      }
+    } else if (value < current.value) {
+      current.left = this.removeNode(current.left, value);
+      return current;
+    } else {
+      current.right = this.removeNode(current.right, value);
+      return current;
+    }
+  }
+
+  // Subpart: Get the Inorder Successor
+  kthSmallestNode(node) {
+    while (!node.left === null) node = node.left;
+    return node;
+  }
+
   find(value) {
     if (!this.root) return undefined;
 
