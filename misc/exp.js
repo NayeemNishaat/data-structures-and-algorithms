@@ -1,19 +1,20 @@
-function caloriesBurned(cals, d, min, max) {
-  const newarr = [];
-  let total = 0;
+const ax = [
+  "abc(app)",
+  "abc(vop)",
+  "abc(kill)",
+  "ashfnsnfnsfn999",
+  "Cur(66s)",
+  "Cur(kkl)"
+];
 
-  for (let i = 0; i < cals.length; i += d) {
-    newarr.push(cals.slice(i, i + d));
-  }
+const news = ax.filter((el, i) => {
+  if (el.includes("(")) {
+    const ind = ax.findIndex((eel) => {
+      return eel.startsWith(el.slice(0, el.indexOf("(")));
+    });
 
-  newarr.forEach((element) => {
-    let temp = 0;
-    element.forEach((el) => (temp += el));
-
-    if (temp < min) total -= 1;
-    if (temp > max) total += 1;
-  });
-  return total;
-}
-
-console.log(caloriesBurned([1, 2, 3, 4, 5, 6, 7], 5, 3, 3));
+    if (ind !== i) return false;
+    else return true;
+  } else return true;
+});
+console.log(news);
