@@ -1,4 +1,3 @@
-console.dir(
-  { as: 12, bb: 78, asd: { yy: { u: { gh: { tt: 89 } } } } },
-  { depth: null }
-);
+const assert = require("node:assert/strict");
+
+assert.deepEqual(23, 25);
