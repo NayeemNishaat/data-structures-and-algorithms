@@ -8,6 +8,6 @@
     return [await func(), 2];
   });
 
-  const ps = await Promise.allSettled(p);
+  const ps = await Promise.allSettled(p); // Note: Check the status of the resolved promises to get info about them
   console.log(ps);
 })();
