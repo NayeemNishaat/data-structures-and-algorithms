@@ -88,6 +88,13 @@ class BST {
         currentNode = currentNode.right;
       }
     }
+
+    // let x = this.root;
+    // while (x !== undefined && value !== x.value) {
+    //   if (value < x.value) x = x.left;
+    //   else x = x.right;
+    // }
+    // return x;
   }
 
   bfs() {
