@@ -17,7 +17,10 @@ class AVL {
     return node.height;
   }
 
-  getBalanceFactor() {}
+  getBalanceFactor(node) {
+    if (!node) return 0;
+    return this.getHeight(node.left) - this.getHeight(node.right);
+  }
 
   insert(value, node = this.root) {
     if (!node) {
@@ -27,13 +30,18 @@ class AVL {
 
     node.height =
       1 + Math.max(this.getHeight(node.left), this.getHeight(node.right));
+
+    const balanceFactor = this.getBalanceFactor(node);
+    console.log(balanceFactor, node);
+
     return node;
   }
 }
 
-const avl = new AVL(new Node(50));
-avl.insert(20);
+const avl = new AVL(new Node(20));
 avl.insert(10);
-avl.insert(100);
+avl.insert(40);
+avl.insert(25);
+avl.insert(30);
 
-console.dir(avl, { depth: null });
+// console.dir(avl, { depth: null });
