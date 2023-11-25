@@ -23,14 +23,14 @@ class AVL {
   }
 
   rightRotate(node) {
-    // const newNode = node.left;
-    // node.left = newNode.right;
-    // newNode.right = node;
-
     const newNode = node.left;
-    const r = newNode.right;
+    node.left = newNode.right;
     newNode.right = node;
-    node.left = r;
+
+    // const newNode = node.left;
+    // const r = newNode.right;
+    // newNode.right = node;
+    // node.left = r;
 
     node.height =
       1 + Math.max(this.getHeight(node.left), this.getHeight(node.right));
@@ -41,14 +41,14 @@ class AVL {
   }
 
   leftRotate(node) {
-    // const newNode = node.right;
-    // node.right = newNode.left;
-    // newNode.left = node;
-
     const newNode = node.right;
-    const l = newNode.left;
+    node.right = newNode.left;
     newNode.left = node;
-    node.right = l;
+
+    // const newNode = node.right;
+    // const l = newNode.left;
+    // newNode.left = node;
+    // node.right = l;
 
     node.height =
       1 + Math.max(this.getHeight(node.left), this.getHeight(node.right));
@@ -58,7 +58,7 @@ class AVL {
     return newNode;
   }
 
-  insert(value, node = this.root) {
+  insert(value, node) {
     if (!node) {
       return new Node(value);
     } else if (value < node.value) node.left = this.insert(value, node.left);
@@ -93,11 +93,13 @@ class AVL {
   }
 }
 
-const avl = new AVL(new Node(10));
-avl.insert(20);
-avl.insert(30);
-avl.insert(25);
-avl.insert(27);
-avl.insert(29);
+const avl = new AVL();
+let root = null;
+root = avl.insert(10, root);
+root = avl.insert(20, root);
+root = avl.insert(30, root);
+root = avl.insert(25, root);
+root = avl.insert(27, root);
+root = avl.insert(29, root);
 
-console.dir(avl, { depth: null });
+console.dir(root, { depth: null });
