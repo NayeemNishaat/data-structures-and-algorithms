@@ -23,25 +23,37 @@ class AVL {
   }
 
   rightRotate(node) {
-    const newNode = node.left;
-    node.left = newNode.right;
-    newNode.right = node;
+    // const newNode = node.left;
+    // node.left = newNode.right;
+    // newNode.right = node;
 
-    node.height = this.getHeight(node.left) - this.getHeight(node.right);
+    const newNode = node.left;
+    const r = newNode.right;
+    newNode.right = node;
+    node.left = r;
+
+    node.height =
+      1 + Math.max(this.getHeight(node.left), this.getHeight(node.right));
     newNode.height =
-      this.getHeight(newNode.left) - this.getHeight(newNode.right);
+      1 + Math.max(this.getHeight(newNode.left), this.getHeight(newNode.right));
 
     return newNode;
   }
 
   leftRotate(node) {
-    const newNode = node.right;
-    node.right = newNode.left;
-    newNode.left = node;
+    // const newNode = node.right;
+    // node.right = newNode.left;
+    // newNode.left = node;
 
-    node.height = this.getHeight(node.left) - this.getHeight(node.right);
+    const newNode = node.right;
+    const l = newNode.left;
+    newNode.left = node;
+    node.right = l;
+
+    node.height =
+      1 + Math.max(this.getHeight(node.left), this.getHeight(node.right));
     newNode.height =
-      this.getHeight(newNode.left) - this.getHeight(newNode.right);
+      1 + Math.max(this.getHeight(newNode.left), this.getHeight(newNode.right));
 
     return newNode;
   }
