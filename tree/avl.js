@@ -27,11 +27,6 @@ class AVL {
     node.left = newNode.right;
     newNode.right = node;
 
-    // const newNode = node.left;
-    // const r = newNode.right;
-    // newNode.right = node;
-    // node.left = r;
-
     node.height =
       1 + Math.max(this.getHeight(node.left), this.getHeight(node.right));
     newNode.height =
@@ -44,11 +39,6 @@ class AVL {
     const newNode = node.right;
     node.right = newNode.left;
     newNode.left = node;
-
-    // const newNode = node.right;
-    // const l = newNode.left;
-    // newNode.left = node;
-    // node.right = l;
 
     node.height =
       1 + Math.max(this.getHeight(node.left), this.getHeight(node.right));
