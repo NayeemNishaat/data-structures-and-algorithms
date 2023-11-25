@@ -85,6 +85,18 @@ class AVL {
 
     return node;
   }
+
+  find(value) {
+    if (!this.root) return undefined;
+
+    let currentNode = this.root;
+    while (currentNode && currentNode.value !== value) {
+      if (value < currentNode.value) currentNode = currentNode.left;
+      else currentNode = currentNode.right;
+    }
+
+    return currentNode || undefined;
+  }
 }
 
 const avl = new AVL();
@@ -97,3 +109,4 @@ avl.insert(27);
 avl.insert(29);
 
 console.dir(avl, { depth: null });
+console.log(avl.find(30));
