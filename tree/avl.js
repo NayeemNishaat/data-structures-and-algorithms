@@ -48,11 +48,15 @@ class AVL {
     return newNode;
   }
 
-  insert(value, node) {
+  insert(value) {
+    this.root = this.#insert(value, this.root);
+  }
+
+  #insert(value, node) {
     if (!node) {
       return new Node(value);
-    } else if (value < node.value) node.left = this.insert(value, node.left);
-    else node.right = this.insert(value, node.right);
+    } else if (value < node.value) node.left = this.#insert(value, node.left);
+    else node.right = this.#insert(value, node.right);
 
     node.height =
       1 + Math.max(this.getHeight(node.left), this.getHeight(node.right));
@@ -84,12 +88,12 @@ class AVL {
 }
 
 const avl = new AVL();
-let root = null;
-root = avl.insert(10, root);
-root = avl.insert(20, root);
-root = avl.insert(30, root);
-root = avl.insert(25, root);
-root = avl.insert(27, root);
-root = avl.insert(29, root);
 
-console.dir(root, { depth: null });
+avl.insert(10);
+avl.insert(20);
+avl.insert(30);
+avl.insert(25);
+avl.insert(27);
+avl.insert(29);
+
+console.dir(avl, { depth: null });
