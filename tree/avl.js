@@ -12,6 +12,11 @@ class AVL {
     this.root = root || null;
   }
 
+  getInOrderSuccessor(node) {
+    while (node.left) node = node.left;
+    return node;
+  }
+
   getHeight(node) {
     if (!node) return 0;
     return node.height;
@@ -97,6 +102,27 @@ class AVL {
 
     return currentNode || undefined;
   }
+
+  delete(value) {
+    this.root = this.#delete(value, this.root);
+  }
+
+  #delete(value, node) {
+    if (!node) return node;
+
+    if (node.value === value) {
+      if (node.left === null) return node.right;
+      if (node.right === null) return node.left;
+
+      const inOrderSuccessor = this.getInOrderSuccessor(node.right);
+
+      node.value = inOrderSuccessor.value;
+      node.right = this.#delete(inOrderSuccessor.value, node.right);
+    } else if (value < node.value) node.left = this.#delete(value, node.left);
+    else node.right = this.#delete(value, node.right);
+
+    return node;
+  }
 }
 
 const avl = new AVL();
@@ -107,6 +133,13 @@ avl.insert(30);
 avl.insert(25);
 avl.insert(27);
 avl.insert(29);
+avl.insert(15);
+avl.insert(12);
+avl.insert(17);
+avl.insert(19);
+avl.insert(22);
 
+// console.log(avl.find(30));
 console.dir(avl, { depth: null });
-console.log(avl.find(30));
+avl.delete(20);
+console.dir(avl, { depth: null });
