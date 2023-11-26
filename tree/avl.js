@@ -121,6 +121,29 @@ class AVL {
     } else if (value < node.value) node.left = this.#delete(value, node.left);
     else node.right = this.#delete(value, node.right);
 
+    if (!node) return node;
+
+    node.height =
+      1 + Math.max(this.getHeight(node.left), this.getHeight(node.right));
+
+    const balanceFactor = this.getBalanceFactor(node);
+
+    if (balanceFactor > 1) {
+      if (this.getBalanceFactor(node.left) >= 0) return this.rightRotate(node);
+      else {
+        node.left = this.leftRotate(node.left);
+        return this.rightRotate(node);
+      }
+    }
+
+    if (balanceFactor < -1) {
+      if (this.getBalanceFactor(node.right) <= 0) return this.leftRotate(node);
+      else {
+        node.right = this.rightRotate(node.right);
+        return this.leftRotate(node);
+      }
+    }
+
     return node;
   }
 }
@@ -142,4 +165,8 @@ avl.insert(22);
 // console.log(avl.find(30));
 console.dir(avl, { depth: null });
 avl.delete(20);
+avl.delete(29);
+avl.delete(30);
+avl.delete(25);
+avl.delete(22);
 console.dir(avl, { depth: null });
