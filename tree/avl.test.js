@@ -8,8 +8,14 @@ class Node {
 }
 
 class AVL {
+  #root;
+
   constructor(root) {
-    this.root = root || null;
+    this.#root = root;
+  }
+
+  print() {
+    console.dir(this.#root, { depth: null });
   }
 
   #updateHeight(node) {
@@ -43,7 +49,7 @@ class AVL {
   }
 
   insert(value) {
-    this.root = this.#insert(value, this.root);
+    this.#root = this.#insert(value, this.#root);
   }
 
   #insert(value, node) {
@@ -92,7 +98,5 @@ const avl = new AVL();
 avl.insert(10);
 avl.insert(20);
 avl.insert(30);
-avl.insert(30);
-avl.insert(30);
 
-console.dir(avl, { depth: null });
+avl.print();
