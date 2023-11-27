@@ -14,6 +14,11 @@ class AVL {
     this.#root = root;
   }
 
+  #getInorderSuccessor(node) {
+    while (node.left) node = node.left;
+    return node;
+  }
+
   print() {
     console.dir(this.#root, { depth: null });
   }
@@ -92,11 +97,62 @@ class AVL {
 
     return node;
   }
+
+  remove(value) {
+    this.#root = this.#remove(value, this.#root);
+  }
+
+  #remove(value, node) {
+    if (!node) return node;
+
+    if (value === node.value) {
+      if (!node.left) return node.right;
+      if (!node.right) return node.left;
+
+      // Note: Handle both child exist case
+      const inorderSuccessor = this.#getInorderSuccessor(node.right);
+      node.value = inorderSuccessor.value;
+      node.right = this.#remove(inorderSuccessor.value, node.right);
+    }
+
+    if (value < node.value) {
+      node.left = this.#remove(value, node.left);
+    } else {
+      node.right = this.#remove(value, node.right);
+    }
+
+    this.#updateHeight(node);
+    const balanceFactor = this.#getBalanceFactor(node);
+
+    if (balanceFactor > 1) {
+      if (this.#getBalanceFactor(node.left) >= 0) {
+        return this.#rightRotate(node);
+      } else {
+        node.left = this.#leftRotate(node.left);
+        return this.#rightRotate(node);
+      }
+    }
+
+    if (balanceFactor < -1) {
+      if (this.#getBalanceFactor(node.right) <= 0) {
+        return this.#leftRotate(node);
+      } else {
+        node.right = this.#rightRotate(node.right);
+        return this.#leftRotate(node);
+      }
+    }
+
+    return node;
+  }
 }
 
 const avl = new AVL();
 avl.insert(10);
 avl.insert(20);
 avl.insert(30);
+
+avl.remove(30);
+avl.remove(10);
+avl.remove(20);
 
 avl.print();
