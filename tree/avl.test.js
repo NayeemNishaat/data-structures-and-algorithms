@@ -169,6 +169,14 @@ class AVL {
     }
     console.log();
   }
+
+  find(value, node = this.#root) {
+    if (!node) return console.log(node);
+
+    if (value === node.value) return console.log(node);
+    if (value < node.value) return this.find(value, node.left);
+    if (value > node.value) return this.find(value, node.right);
+  }
 }
 
 const avl = new AVL();
@@ -177,6 +185,9 @@ avl.insert(20);
 avl.insert(30);
 avl.insert(40);
 avl.insert(50);
+
+avl.print();
+avl.find(30);
 
 avl.remove(30);
 avl.remove(10);
