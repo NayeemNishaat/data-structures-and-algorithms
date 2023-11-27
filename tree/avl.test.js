@@ -11,7 +11,7 @@ class AVL {
   #root;
 
   constructor(root) {
-    this.#root = root;
+    this.#root = root || null;
   }
 
   #getInorderSuccessor(node) {
@@ -144,6 +144,13 @@ class AVL {
 
     return node;
   }
+
+  dfs(node = this.#root) {
+    if (!node) return console.log(null);
+    if (node.left) this.dfs(node.left);
+    process.stdout.write(`${node.value} `);
+    if (node.right) this.dfs(node.right);
+  }
 }
 
 const avl = new AVL();
@@ -151,8 +158,10 @@ avl.insert(10);
 avl.insert(20);
 avl.insert(30);
 
-avl.remove(30);
-avl.remove(10);
-avl.remove(20);
+// avl.remove(30);
+// avl.remove(10);
+// avl.remove(20);
 
 avl.print();
+
+avl.dfs();
