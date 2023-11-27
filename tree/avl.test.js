@@ -147,9 +147,27 @@ class AVL {
 
   dfs(node = this.#root) {
     if (!node) return console.log(null);
-    if (node.left) this.dfs(node.left);
-    process.stdout.write(`${node.value} `);
-    if (node.right) this.dfs(node.right);
+
+    function recursive(node) {
+      if (node.left) recursive(node.left);
+      process.stdout.write(`${node.value} `);
+      if (node.right) recursive(node.right);
+    }
+    recursive(node);
+    console.log();
+  }
+
+  bfs(node = this.#root) {
+    if (!node) return console.log(null);
+    const arr = [node];
+
+    while (arr.length) {
+      const node = arr.shift();
+      process.stdout.write(`${node.value} `);
+      if (node.left) arr.push(node.left);
+      if (node.right) arr.push(node.right);
+    }
+    console.log();
   }
 }
 
@@ -157,11 +175,14 @@ const avl = new AVL();
 avl.insert(10);
 avl.insert(20);
 avl.insert(30);
+avl.insert(40);
+avl.insert(50);
 
-// avl.remove(30);
-// avl.remove(10);
-// avl.remove(20);
+avl.remove(30);
+avl.remove(10);
+avl.remove(20);
 
 avl.print();
 
 avl.dfs();
+avl.bfs();
