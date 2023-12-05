@@ -1,6 +1,12 @@
 (async () => {
   async function ab(i) {
     if (i === 2) throw new Error("i is 3");
+
+    // try {
+    //   if (i === 2) throw new Error("i is 3");
+    // } catch (error) {
+    //   console.log(error);
+    // }
   }
 
   try {
@@ -12,6 +18,9 @@
       } catch (error) {
         console.log(error);
       }
+
+      // await ab(i);
+      // console.log(i);
     }
 
     console.log("End");
